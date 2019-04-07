@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+	<h1>index page</h1>
+	<form method="post" action="{% url 'new' %}">
+		{% csrf_token %}
+		{{form}}
+		<input type="submit" value="create">
+	</form>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+body{
+  font-family: 'Inconsolata', monospace;
+  font-size:18px;
+  color:#9B30FF;
+  background-color:#37FDFC;
+
+}
+li {list-style-type: none;}
+</style>
+</head>
+<body>
+	 <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">startup</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{% url 'index' %}">blog</a></li>
+      <li><a href="{% url 'stats' %}">stats</a></li>
+      <li><a href="{% url 'link' %}">pages</a></li>
+      <li><a href="{% url 'add' %}">add link</a></li>
+      <li><a href="{% url 'view_products' %}">view_products</a></li>
+      <li><a href="{% url 'new_add' %}">add product</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if not user.is_authenticated %}
+        <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% else %}
+
+        <li><a href="{% url 'new' %}"><span class="glyphicon glyphicon-plus"></span> new blog</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav> 
+	{% block body %}
+	{% endblock %}
+	
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet"> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style>
+body{
+  color:#9B30FF;
+  background-color:#37FDFC;
+  margin: 20px auto;
+}
+.form-control{
+  width:75%;
+}
+.blog {
+  width: 80%;
+  border: 20px solid #bdc3c7;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+.post {
+  margin-bottom: 20px;
+}
+
+.date {
+  color: #3498db;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+p{
+  margin: 20px auto 20px auto;
+}
+p:nth-of-type(1){
+
+  border-left: 5px solid #bdc3c7;
+  padding-left: 5px;
+}
+
+h2 {
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+hr{
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.blog .post p{
+  margin:20px auto;
+}
+.just{
+  margin:20px auto;
+}
+</style>
+</head>
+<body>
+   <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">startup</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="{% url 'index' %}">blog</a></li>
+      <li><a href="{% url 'stats' %}">stats</a></li>
+      <li><a href="{% url 'link' %}">pages</a></li>
+      <li><a href="{% url 'add' %}">add link</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if not user.is_authenticated %}
+        <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      {% else %}
+
+        <li><a href="{% url 'new' %}"><span class="glyphicon glyphicon-plus"></span> new blog</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{user.username}}</a></li>
+        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav> 
+<div class=""
+<div class="blog">
+	<div class="container post">
+		<h1>{{data.title}}</h1>
+		<div class="date">{{data.date}}</div>
+		{% for ji in data.list %}
+			<p >{{ji|linebreaks}}</p>
+		{% endfor %}
+		<hr>
+	</div>
+</div>
+<div class="container">
+	<form method="post" action="{% url 'bloger' id %}">
+		{% csrf_token %}
+		{{form}}
+		<input type="submit" value="post">
+	</form>
+</div>
+</body>
+</html>

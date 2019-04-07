@@ -1,0 +1,8 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+	<h1>link page</h1>
+	<ul>
+	{% for ki in data %}
+		<li><a href="{% url 'send' ki.id %}">{{ki.name}}</a></li>
+	{% endfor %}
+{% endblock %}

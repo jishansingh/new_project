@@ -1,0 +1,2 @@
+CHOICE=(
+	("car","car"),("coolers","coolers"),("mobile","mobile"),	("mobile and appliances","mobile and appliances"),	("laptop and accesories","laptop and accesories"),	("other","other"),	("notes","notes"))

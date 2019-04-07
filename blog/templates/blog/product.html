@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+<h1>index page</h1>
+  <style>
+  .img-thumbnail{
+    width:50%;
+    border:2px solid grey;
+
+  }
+    .container {
+    position: relative;
+    width: 75%;
+  }
+  .container img {
+    width: 100%;
+    height: auto;
+  }
+  .img-fluid{
+    width:33%;
+    padding-bottom:10px;  
+    size:cover;
+  }
+</style>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Find any items!</h1>
+      </div>
+
+    </div>
+    <h1>{{obj}}</h1>
+      <div class="container">
+        <div class="row">
+      {% for field in data %}
+      
+        <div class="col-lg-4 col-xs-6 thumbnail img-fluid">
+          <a href="#"><img src="{{field.image.url}}"></a>
+          <ul>
+            <h3>{{field.name}}</h3>
+          	<li>viewed by {{field.viewed}}</li>
+          	<li>posted by {{field.by}}</li>
+      	</ul>
+        <a href="{% url 'detail' field.id %}"><button type="button" class="btn btn-outline-success">buy</button></a>
+        </div>
+      {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}

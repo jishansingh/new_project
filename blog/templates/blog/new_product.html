@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+	<h1>index page</h1>
+	<div class="container">
+		<form method="post" action="{% url 'new_add' %}" enctype= multipart/form-data>
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type="submit" value="post">
+		</form>
+	</div>
+{% endblock %}
